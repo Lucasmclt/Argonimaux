@@ -8,7 +8,7 @@ Toutes les parties du programme ont été développées à l'aide du langage de 
 
 ## EXECUTION
 Afin de pouvoir exécuter le programme sans aucun problème, il faut tout d’abord s’assurer que tous les modules utilisés sont présents sur l’ordinateur.
-Si ils ne le sont pas, merci de bien vouloir télécharger les modules tkinter, PIL, folium, webbrowser, sqlite3. Une fois tous modules indispensables aufonctionnement du programme, il faut créer, UNIQUEMENT lors de la première exécution la commande permettant d’ajouter tous les enregistrements dans les tables SQL (l.52 dans tkinter.py).
+Si ils ne le sont pas, merci de bien vouloir télécharger les modules tkinter, PIL, folium, webbrowser, sqlite3. Une fois tous modules indispensables aufonctionnement du programme, il faut créer, UNIQUEMENT lors de la première exécution la commande permettant d’ajouter tous les enregistrements dans les tables SQL (l.51 dans tkinter.py).
 
 ## Commandes d'installation des modules python:
 
