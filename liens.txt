@@ -1,0 +1,13 @@
+Argonimaux - Informations sur les animaux
+http://argonautica.jason.oceanobs.com/html/argonautica/affiche_donnees_fr.html?id=muse 
+
+
+Vidéo base de données
+https://www.youtube.com/watch?v=Ohj-CqALrwk&ab_channel=PythonSimplified
+
+
+listebox
+https://pythonprogramming.altervista.org/tkinter-15-add-a-scrollbar-to-tkinter/?doing_wp_cron=1682365343.7145609855651855468750
+
+combobox
+https://www.tresfacile.net/liste-combobox-tkinter/
