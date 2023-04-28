@@ -213,7 +213,7 @@ def AfficherCarte():
 
     table = gestion.coordonnesAnimal(connection, AnimalSelect)
 
-    print("t")
+    print(table)
 
     #Création d'une carte
     fmap = folium.Map(location=[43.604598, 1.445456],

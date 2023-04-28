@@ -77,7 +77,6 @@ def ajoutEnregistrement(fichier, connection):
         id += 1
 
 
-
 #---------------------------EXTRACTION NOM ET TYPE---------------------------
 def nomCoordonnees(connection, x1, x2, y1, y2):
     """
@@ -113,13 +112,11 @@ def coordonnesAnimal(connection, nomAnimal):
     """
 
     cursor = connection.cursor()
-
-    #cursor.execute(
-    #"SELECT latitude, longitude FROM liens INNER JOIN animaux ON liens.num = animaux.num WHERE nom=:n",
-    #{"n": nomAnimal})
-
-    cursor.execute("SELECT longitude, latitude FROM liens INNER JOIN animaux ON liens.num = animaux.num WHERE nom=:n", {"n": nomAnimal})
+    
+    cursor.execute(
+        "SELECT latitude, longitude FROM liens INNER JOIN animaux ON liens.num = animaux.num WHERE nom=:n",
+        {"n": nomAnimal})
 
     selection = cursor.fetchall()
-    
+
     return selection
