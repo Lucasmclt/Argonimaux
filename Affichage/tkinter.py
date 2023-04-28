@@ -36,7 +36,7 @@ animaux = {
         "Vita",
         "Zamzam",
     ],
-    "requin": ["Marie B", "Gary"],
+    "requin": ["Gary"],
     "bouée": [
         "ChildOceans", "Coris", "Coris 2", "Zelisca", "Pegase 2019", "Phebus",
         "VenusExpe", "Meduse"
