@@ -36,7 +36,7 @@ animaux = {
         "Vita",
         "Zamzam",
     ],
-    "requin": ["Anna Pelerine", "Marie B", "Gary"],
+    "requin": ["Marie B", "Gary"],
     "bouée": [
         "ChildOceans", "Coris", "Coris 2", "Zelisca", "Pegase 2019", "Phebus",
         "VenusExpe", "Meduse"
@@ -248,6 +248,7 @@ listeCombo.bind("<<ComboboxSelected>>",
                 Selection)  # Application de la fonction selection à l'élément
 
 print(nom)
+
 
 #------------------------------------BOUTON 1----------------------------------------------------------
 #Le bouton 1 permet afficher la carte avec le trajet complet d'un élément
