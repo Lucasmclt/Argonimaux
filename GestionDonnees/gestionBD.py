@@ -122,6 +122,6 @@ def coordonnesAnimal(connection, nomAnimal):
 
     selection = cursor.fetchall()
 
-    print(selection)
+    print('a', selection)
     
     return selection

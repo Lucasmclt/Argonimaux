@@ -1,10 +1,12 @@
 import GestionDonnees.gestionBD as gestion
-from tkinter import *
-from tkinter import ttk
 import GestionDonnees.extractionCSV as e
-from PIL import Image, ImageTk
 
 import tkinter.font as font
+from tkinter import *
+from tkinter import ttk
+
+from PIL import Image, ImageTk
+
 import folium
 import webbrowser
 import sqlite3
@@ -77,9 +79,7 @@ def conversion_pxy_coord(py):
   d = -((py / (1000 / 30)) - 60)
   return d
 
-
 images = []
-
 
 #La fonction permet de créer un rectancle sur un canvas
 def create_rectangle(x1, y1, x2, y2, **kwargs):
@@ -91,7 +91,6 @@ def create_rectangle(x1, y1, x2, y2, **kwargs):
     images.append(ImageTk.PhotoImage(image))
     canvas.create_image(x1, y1, image=images[-1], anchor='nw')
   canvas.create_rectangle(x1, y1, x2, y2, **kwargs)
-
 
 #--------------------------Création de la fenêtre--------------------------
 #Définition de la fenetre principale
