@@ -121,7 +121,5 @@ def coordonnesAnimal(connection, nomAnimal):
     cursor.execute("SELECT longitude, latitude FROM liens INNER JOIN animaux ON liens.num = animaux.num WHERE nom=:n", {"n": nomAnimal})
 
     selection = cursor.fetchall()
-
-    print('a', selection)
     
     return selection
