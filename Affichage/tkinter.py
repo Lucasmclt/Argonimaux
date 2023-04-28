@@ -11,8 +11,7 @@ import folium
 import webbrowser
 import sqlite3
 
-#Variable permettant de stocker l'animal sélection ; une valeur est déjà sélectionné par defaut
-AnimalSelect = "Rosa"
+nom = ""
 
 #Dictionnaire contenant tout le nom des animaux et leur type (tortues, requins, bouées)
 animaux = {
@@ -37,7 +36,7 @@ animaux = {
         "Vita",
         "Zamzam",
     ],
-    "requin": ["Anna Pelerine", "Marie B", "Gary"],
+    "requin": ["Marie B", "Gary"],
     "bouée": [
         "ChildOceans", "Coris", "Coris 2", "Zelisca", "Pegase 2019", "Phebus",
         "VenusExpe", "Meduse"
@@ -206,14 +205,57 @@ boutQuitter = Button(fenetre,
 boutQuitter.pack(side=BOTTOM, padx=10)  #position du bouton
 boutQuitter['font'] = f1  #style du bouton
 
+#-------------------------------------------------------------------------------------------------------------------------------------
+#Affiche le titre de la page
+Titre = Label(fenetre,
+              text="ARGONIMAUX",
+              justify=CENTER,
+              padx=100,
+              pady=10,
+              bg='LawnGreen',
+              fg='Black',
+              relief=SUNKEN)
+Titre.pack()
+Titre['font'] = f2
+
+#Variable permettant de stocker l'animal sélection ; une valeur est déjà sélectionné par defaut
+AnimalSelect = ""
+
+
+#---------------------------------------COMBOBOX---------------------------------------------------------------------------------------
+#Création d'une combobox avec les élémnts présents dans la zone sélectionnée
+def Selection(event):
+    #Obtenir l'élément sélectionné
+    global AnimalSelect
+    AnimalSelect = str(listeCombo.get())
+
+
+Texte1 = Label(fenetre,
+               text="Cliquer sur une zone et choisir un élément à localiser")
+Texte1.pack(pady=10)
+Texte1['font'] = f1
+
+AnimauxCombo = ["Aucune case sélectionnée"]  # Choix de l'
+
+listeCombo = ttk.Combobox(
+    fenetre, values=AnimauxCombo,
+    width=50)  #Création de la Combobox via la méthode ttk.Combobox()
+
+listeCombo.current(0)  #Choix de l'élément qui s'affiche par défaut
+
+listeCombo.pack(pady=10)
+listeCombo.bind("<<ComboboxSelected>>",
+                Selection)  # Application de la fonction selection à l'élément
+
+print(nom)
+
 
 #------------------------------------BOUTON 1----------------------------------------------------------
 #Le bouton 1 permet afficher la carte avec le trajet complet d'un élément
 def AfficherCarte():
 
+    #Liste contenant les coordonnées de l'élèment sélectionné
     table = gestion.coordonnesAnimal(connection, AnimalSelect)
-
-    print("t")
 
     #Création d'une carte
     fmap = folium.Map(location=[43.604598, 1.445456],
@@ -240,44 +282,6 @@ btn1 = Button(fenetre,
 
 btn1.pack(side=BOTTOM, padx=10, pady=10)
 btn1['font'] = f1
-
-#-------------------------------------------------------------------------------------------------------------------------------------
-#Affiche le titre de la page
-Titre = Label(fenetre,
-              text="ARGONIMAUX",
-              justify=CENTER,
-              padx=100,
-              pady=10,
-              bg='LawnGreen',
-              fg='Black',
-              relief=SUNKEN)
-Titre.pack()
-Titre['font'] = f2
-
-
-#---------------------------------------COMBOBOX---------------------------------------------------------------------------------------
-#Création d'une combobox avec les élémnts présents dans la zone sélectionnée
-def Selection(event):
-    #Obtenir l'élément sélectionné
-    AnimalSelect = str(listeCombo.get())
-
-
-Texte1 = Label(fenetre,
-               text="Cliquer sur une zone et choisir un élément à localiser")
-Texte1.pack(pady=10)
-Texte1['font'] = f1
-
-AnimauxCombo = ["Aucune case sélectionnée"]  # Choix de l'
-
-listeCombo = ttk.Combobox(
-    fenetre, values=AnimauxCombo,
-    width=50)  #Création de la Combobox via la méthode ttk.Combobox()
-
-listeCombo.current(0)  #Choix de l'élément qui s'affiche par défaut
-
-listeCombo.pack(pady=10)
-listeCombo.bind("<<ComboboxSelected>>",
-                Selection)  # Application de la fonction selection à l'élément
 
 #-----------------------------------Légende----------------------------------------------------------------------------------------
 #Affichage de la légende qui permet de comprendre la signification des surbrillances présentes sur la carte
@@ -373,7 +377,6 @@ listboxT.insert(0, 'Anna Pèlerine')  #Ajout des différents éléments
 listboxT.insert(1, 'Marie B')
 listboxT.insert(2, 'Gary')
 listboxT.pack()
-
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
 #Détection des clics de la souris sur la carte
