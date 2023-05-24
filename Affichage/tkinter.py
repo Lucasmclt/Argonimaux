@@ -46,12 +46,14 @@ animaux = {
 #Ouvre une connection avec la base de données
 connection = sqlite3.connect("Argonimaux.db")
 
+#Essaie de création des tables de la base de données
+#Lors de la première exécution du programme, les tables sont créées
+try :
+    gestion.creation(connection)
+except:
+    print("Les tables existent déjà")
 
-# ===========================================IMPORTANT PREMIERE EXECTUTION============================================================s
-#À exécuter UNIQUEMENT lors de la première exécution
-#gestion.creation(connection)
-# ====================================================================================================================================
-
+    
 #Ajout chaque ligne de chaque animal dans la table
 for k in animaux.keys():
     for i in range(len(animaux[k])):
