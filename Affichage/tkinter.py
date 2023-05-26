@@ -333,6 +333,8 @@ Texte3.pack()
 Texte3['font'] = f1
 
 listboxT = Listbox(fenetre)  # création le la listbox
+######################################################
+#Tenter un for i in range pour la liste des élèments
 listboxT.insert(0, 'Anna Antimo')  # ajout des différents éléments
 listboxT.insert(1, 'Antioche')
 listboxT.insert(2, 'Ashoka')
