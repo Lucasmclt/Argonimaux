@@ -120,3 +120,22 @@ def coordonnesAnimal(connection, nomAnimal):
     selection = cursor.fetchall()
 
     return selection
+
+#-------------------------EXTRACTION DATES D'UN ANIMAL------------------
+def datesAnimal(connection, nomAnimal):
+    """
+    La fonction renvoie les dates selon le nom d'un animal
+    Le paramètre nom est de type string
+    Le parametre connection est un objet permettant de se connecter avec la base de données
+    La fonction renvoi la selection des dates sous forme de liste de string
+    """
+
+    cursor = connection.cursor()
+
+    cursor.execute(
+        "SELECT jour FROM liens INNER JOIN animaux ON liens.num = animaux.num WHERE nom=:n",
+        {"n": nomAnimal})
+
+    selection = cursor.fetchall()
+
+    return selection
