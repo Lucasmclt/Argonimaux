@@ -104,13 +104,46 @@ fenetre = Tk()
 fenetre.geometry("1000x1000")
 fenetre.minsize(1000, 1000)
 fenetre.title('Argonimaux')
+fenetre.configure(bg = "White", padx = 8, pady = 8)
 #fenetre.iconbitmap('icon.ico')
+
+#Création d'une frame pour la carte
+imageFrame = Frame(fenetre, width=678, height=998, borderwidth = 5, bg = "Black")
 
 #Importation de la carte
 photo = PhotoImage(file="Affichage/openstreetmap.png")
-canvas = Canvas(fenetre, width=680, height=1000)
+canvas = Canvas(imageFrame, width=680, height=1000)
 canvas.create_image(0, 0, anchor=NW, image=photo)
-canvas.pack(side=LEFT)
+canvas.pack()
+
+
+#Fonction servant à réaliser des rectangles avec des coins arrondis
+def round_rectangle(x1, y1, x2, y2, radius=25, **kwargs):
+
+    points = [x1+radius, y1,
+              x1+radius, y1,
+              x2-radius, y1,
+              x2-radius, y1,
+              x2, y1,
+              x2, y1+radius,
+              x2, y1+radius,
+              x2, y2-radius,
+              x2, y2-radius,
+              x2, y2,
+              x2-radius, y2,
+              x2-radius, y2,
+              x1+radius, y2,
+              x1+radius, y2,
+              x1, y2,
+              x1, y2-radius,
+              x1, y2-radius,
+              x1, y1+radius,
+              x1, y1+radius,
+              x1, y1]
+
+    return canvas.create_polygon(points, **kwargs, smooth=True)
+
+my_rectangle = round_rectangle(50, 50, 150, 100, radius=20, fill="blue")
 
 #--------------------------Mise en place d'un quadrillage-------------------------------
 #Définition du nombre de case sur les abscisses (longitude)
