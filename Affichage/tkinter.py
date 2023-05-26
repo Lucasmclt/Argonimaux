@@ -36,7 +36,7 @@ animaux = {
         "Vita",
         "Zamzam",
     ],
-    "requin": ["Gary"],
+    "requin": ["Anna Pelerine", "Gary", "Marie B"],
     "bouée": [
         "ChildOceans", "Coris", "Coris 2", "Zelisca", "Pegase 2019", "Phebus",
         "VenusExpe", "Meduse"
@@ -46,14 +46,16 @@ animaux = {
 #Ouvre une connection avec la base de données
 connection = sqlite3.connect("Argonimaux.db")
 
-#Essaie de création des tables de la base de données
-#Lors de la première exécution du programme, les tables sont créées
-try :
+
+# ===========================================IMPORTANT PREMIERE EXECTUTION============================================================s
+#À exécuter UNIQUEMENT lors de la première exécution
+
+try:
     gestion.creation(connection)
 except:
     print("Les tables existent déjà")
+# ====================================================================================================================================
 
-    
 #Ajout chaque ligne de chaque animal dans la table
 for k in animaux.keys():
     for i in range(len(animaux[k])):
@@ -332,30 +334,13 @@ Texte3 = Label(fenetre, text='Tortues :')
 Texte3.pack()
 Texte3['font'] = f1
 
-listboxT = Listbox(fenetre)  # création le la listbox
-######################################################
-#Tenter un for i in range pour la liste des élèments
-listboxT.insert(0, 'Anna Antimo')  # ajout des différents éléments
-listboxT.insert(1, 'Antioche')
-listboxT.insert(2, 'Ashoka')
-listboxT.insert(3, 'Bambi')
-listboxT.insert(4, 'Bouton d’or')
-listboxT.insert(5, 'Chacaé')
-listboxT.insert(6, 'Danaé')
-listboxT.insert(7, 'Delta')
-listboxT.insert(8, 'Domino')
-listboxT.insert(9, 'Ecume')
-listboxT.insert(10, 'Tika')
-listboxT.insert(11, 'Lora')
-listboxT.insert(12, 'Tom')
-listboxT.insert(13, 'Zamzam')
-listboxT.insert(14, 'Rosa')
-listboxT.insert(15, 'Vita')
-listboxT.insert(16, 'Ninja-Baleores')
-listboxT.insert(17, 'Neus')
-listboxT.insert(18, 'Muse')
-listboxT.insert(19, 'Maona')
+listboxT = Listbox(fenetre)#Création le la listbox
+
+for i in range(len(animaux['tortue'])):
+    listboxT.insert(i, animaux['tortue'][i])
 listboxT.pack()
+listboxT.configure(state = DISABLED)
+
 
 #Listbox Balises
 Texte5 = Label(fenetre, text='Balises :')
@@ -363,16 +348,12 @@ Texte5.pack()
 Texte5['font'] = f1
 
 listboxT = Listbox(fenetre)  # création le la listbox
-listboxT.insert(0, 'ChildOceans')  # ajout des différents éléments
-listboxT.insert(1, 'Coris')
-listboxT.insert(2, 'Coris 2')
-listboxT.insert(3, 'Zelisca')
-listboxT.insert(4, 'Pégasse 2019')
-listboxT.insert(5, 'Phébus')
-listboxT.insert(6, 'Théthyse')
-listboxT.insert(7, 'Venus Expe')
-listboxT.insert(8, 'Méduse')
+
+for i in range(len(animaux['bouée'])):
+    listboxT.insert(i, animaux['bouée'][i])
 listboxT.pack()
+listboxT.configure(state = DISABLED)
+
 
 #Listbox Requins
 Texte4 = Label(fenetre, text='Requins :')
@@ -380,10 +361,10 @@ Texte4.pack()
 Texte4['font'] = f1
 
 listboxT = Listbox(fenetre)  #Création le la listbox
-listboxT.insert(0, 'Anna Pèlerine')  #Ajout des différents éléments
-listboxT.insert(1, 'Marie B')
-listboxT.insert(2, 'Gary')
+for i in range(len(animaux['requin'])):
+    listboxT.insert(i, animaux['requin'][i])
 listboxT.pack()
+listboxT.configure(state = DISABLED)
 
 #-----------------------------------------------------------------------------------------------------------------------------------------
 #Détection des clics de la souris sur la carte
