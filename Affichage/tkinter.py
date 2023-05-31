@@ -300,19 +300,12 @@ def AfficherCarte():
 
     # placement des marqueurs
     for i in range(0,len(date),50):
-
-        print(date[i][0])
-        x = date[i][0][::-1]
-        j = date[-1]
-        m = date[5:6]
-        a = date[0:3]
-        date = j/m/a
-        print(date)
-
-
-
-        folium.Marker(table[i], x, icon=folium.Icon(color='darkblue')).add_to(fmap)
-    # Ajout d'un marqueur
+        j = date[i][0][-2:]
+        m = date[i][0][5:7]
+        a = date[i][0][0:4]
+        aff_date = j +"/"+ m +"/"+ a
+        folium.Marker(table[i], aff_date, icon=folium.Icon(color='darkblue')).add_to(fmap)
+ 
 
 
 #Création bouton 1
