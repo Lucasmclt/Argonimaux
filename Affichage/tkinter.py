@@ -105,7 +105,7 @@ fenetre.geometry("1000x1000")
 fenetre.minsize(1000, 1000)
 fenetre.title('Argonimaux')
 fenetre.configure(bg = "White", padx = 8, pady = 8)
-#fenetre.iconbitmap('icon.ico')
+fenetre.iconbitmap('icon.ico')
 
 #Création d'une frame pour la carte
 imageFrame = Frame(fenetre, width=678, height=998, borderwidth = 5, bg = "Black")
@@ -144,7 +144,7 @@ def round_rectangle(x1, y1, x2, y2, radius=25, **kwargs):
 
     return canvas.create_polygon(points, **kwargs, smooth=True)
 
-my_rectangle = round_rectangle(50, 50, 150, 100, radius=20, fill="blue")
+#my_rectangle = round_rectangle(50, 50, 150, 100, radius=20, fill="blue")
 
 #--------------------------Mise en place d'un quadrillage-------------------------------
 #Définition du nombre de case sur les abscisses (longitude)
@@ -245,6 +245,14 @@ boutQuitter['font'] = f1  #style du bouton
 
 #-------------------------------------------------------------------------------------------------------------------------------------
 #Affiche le titre de la page
+logo = PhotoImage(file = "Affichage/1.png")
+
+canvasLogo = Canvas(fenetre, width = 500, height = 100, borderwidth = 0, highlightthickness = 0, bg = "white")
+canvasLogo.create_image(250, 50, image = logo)
+canvasLogo.pack()
+
+
+"""
 Titre = Label(fenetre,
               text="ARGONIMAUX",
               justify=CENTER,
@@ -255,6 +263,7 @@ Titre = Label(fenetre,
               relief=SUNKEN)
 Titre.pack()
 Titre['font'] = f2
+"""
 
 #Variable permettant de stocker l'animal sélection ; une valeur est déjà sélectionné par defaut
 AnimalSelect = ""
@@ -281,11 +290,9 @@ listeCombo = ttk.Combobox(
 
 listeCombo.current(0)  #Choix de l'élément qui s'affiche par défaut
 
-listeCombo.pack(pady=10)
-listeCombo.bind("<<ComboboxSelected>>",
-                Selection)  # Application de la fonction selection à l'élément
+listeCombo.pack(pady = 10)
+listeCombo.bind("<<ComboboxSelected>>", Selection)  # Application de la fonction selection à l'élément
 
-print(nom)
 
 
 #------------------------------------BOUTON 1----------------------------------------------------------
@@ -296,9 +303,7 @@ def AfficherCarte():
     table = gestion.coordonnesAnimal(connection, AnimalSelect)
 
     #Création d'une carte
-    fmap = folium.Map(location=[43.604598, 1.445456],
-                      tiles="OpenStreetMap",
-                      zoom_start=4.5)
+    fmap = folium.Map(location = [43.604598, 1.445456], tiles="OpenStreetMap", zoom_start = 4.5)
 
     #Ajout d'un marqueur
     folium.Marker([43.604598, 1.445456])
