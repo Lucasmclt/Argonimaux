@@ -296,7 +296,23 @@ def AfficherCarte():
     fmap.save("carte.html")  #Génération du fichier HTML contenant la carte
     webbrowser.open("carte.html")  #Ouverture d'une nouvelle page avec la carte
 
+    # placement des marqueurs
+    for i in range(0,len(date),50):
 
+        print(date[i][0])
+        x = date[i][0][::-1]
+        j = date[-1]
+        m = date[5:6]
+        a = date[0:3]
+        date = j/m/a
+        print(date)
+
+
+
+        folium.Marker(table[i], x, icon=folium.Icon(color='darkblue')).add_to(fmap)
+    # Ajout d'un marqueur
+    
+    
 #Création bouton 1
 btn1 = Button(fenetre,
               bg='green',
