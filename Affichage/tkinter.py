@@ -107,7 +107,8 @@ fenetre.title('Argonimaux')
 fenetre.configure(bg = "White", padx = 8, pady = 8)
 fenetre.iconbitmap('icon.ico')
 
-#Création d'une frame pour la carte
+#-------------------------------------------------------------------------------
+#Création d'un canvas pour la carte
 imageFrame = Frame(fenetre, width=678, height=998, borderwidth = 5, bg = "Black")
 imageFrame.pack(side="left")
 
@@ -117,7 +118,11 @@ canvas = Canvas(imageFrame, width=680, height=1000)
 canvas.create_image(0, 0, anchor=NW, image=photo)
 canvas.pack()
 
+#-------------------------------------------------------------------------------
+#Définition de la police
+police = tkfont.Font(family="Onest-Regular.ttf", size = 10,  weight = "bold")
 
+#-------------------------------------------------------------------------------
 #Fonction servant à réaliser des rectangles avec des coins arrondis
 def round_rectangle(x1, y1, x2, y2, radius=25, **kwargs):
 
@@ -269,7 +274,9 @@ Titre['font'] = f2
 AnimalSelect = ""
 
 
-#---------------------------------------COMBOBOX---------------------------------------------------------------------------------------
+#Variable permettant de stocker l'animal sélection ; une valeur est déjà sélectionné par defaut
+AnimalSelect = ""
+
 #Création d'une combobox avec les élémnts présents dans la zone sélectionnée
 def Selection(event):
     #Obtenir l'élément sélectionné
@@ -277,17 +284,17 @@ def Selection(event):
     AnimalSelect = str(listeCombo.get())
 
 
-Texte1 = Label(fenetre,
-               text="Cliquer sur une zone et choisir un élément à localiser")
-Texte1.pack(pady=10)
-Texte1['font'] = f1
+selectionFrame = Frame(fenetre, width = 700, height = 200, bg = "white", padx = 10, pady = 10)
+selectionFrame.pack()
 
-AnimauxCombo = ["Aucune case sélectionnée"]  # Choix de l'
 
-listeCombo = ttk.Combobox(
-    fenetre, values=AnimauxCombo,
-    width=50)  #Création de la Combobox via la méthode ttk.Combobox()
 
+Texte1 = Label(selectionFrame, text = "Cliquer sur une zone et choisir un élément à localiser", font = police)
+Texte1.pack(pady = 10)
+
+AnimauxCombo = ["Aucune case sélectionnée"]  # Choix de l'animal
+
+listeCombo = ttk.Combobox(selectionFrame, values = AnimauxCombo, width = 50, font = police)  #Création de la Combobox via la méthode ttk.Combobox()
 listeCombo.current(0)  #Choix de l'élément qui s'affiche par défaut
 
 listeCombo.pack(pady = 10)
