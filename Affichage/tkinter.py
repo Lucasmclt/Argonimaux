@@ -245,7 +245,7 @@ boutQuitter['font'] = f1  #style du bouton
 
 #-------------------------------------------------------------------------------------------------------------------------------------
 #Affiche le titre de la page
-logo = PhotoImage(file = "Affichage/1.png")
+logo = PhotoImage(file = "Affichage/logoPage.png")
 
 canvasLogo = Canvas(fenetre, width = 500, height = 100, borderwidth = 0, highlightthickness = 0, bg = "white")
 canvasLogo.create_image(250, 50, image = logo)
