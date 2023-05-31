@@ -109,6 +109,7 @@ fenetre.configure(bg = "White", padx = 8, pady = 8)
 
 #Création d'une frame pour la carte
 imageFrame = Frame(fenetre, width=678, height=998, borderwidth = 5, bg = "Black")
+imageFrame.pack(side="left")
 
 #Importation de la carte
 photo = PhotoImage(file="Affichage/openstreetmap.png")
