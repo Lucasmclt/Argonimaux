@@ -4,6 +4,7 @@ import GestionDonnees.extractionCSV as e
 import tkinter.font as font
 from tkinter import *
 from tkinter import ttk
+import tkinter.font as tkfont
 
 from PIL import Image, ImageTk
 
@@ -98,14 +99,17 @@ def create_rectangle(x1, y1, x2, y2, **kwargs):
     canvas.create_rectangle(x1, y1, x2, y2, **kwargs)
 
 
-#--------------------------Création de la fenêtre--------------------------
+#-------------------------------Création de la fenêtre--------------------------
 #Définition de la fenetre principale
 fenetre = Tk()
 fenetre.geometry("1000x1000")
 fenetre.minsize(1000, 1000)
-fenetre.title('Argonimaux')
 fenetre.configure(bg = "White", padx = 8, pady = 8)
+fenetre.overrideredirect(False)
+fenetre.title('Argonimaux')
 fenetre.iconbitmap('icon.ico')
+fenetre.state("zoomed")
+
 
 #-------------------------------------------------------------------------------
 #Création d'un canvas pour la carte
@@ -117,6 +121,7 @@ photo = PhotoImage(file="Affichage/openstreetmap.png")
 canvas = Canvas(imageFrame, width=680, height=1000)
 canvas.create_image(0, 0, anchor=NW, image=photo)
 canvas.pack()
+
 
 #-------------------------------------------------------------------------------
 #Définition de la police
@@ -225,31 +230,17 @@ def coord_clic(evt):
     return zone_select
 
 
-#------------------------------------BOUTONS-----------------------------------------------------------
-#------------------------------------BOUTON 2----------------------------------------------------------
+#------------------------------------BOUTONS------------------------------------
+#------------------------------------BOUTON 2-----------------------------------
 #Le bouton 2 permet de fermer la page
-f1 = font.Font(
-    family='Courier', size=10, weight="bold"
-)  # définition de 2 styles d'écriture (pour le titre et le texte)
-f2 = font.Font(family='Courier', size=30, weight="bold")
-
-
 def BoutQuit():
-    fenetre.destroy(
-    )  # Fonction qui permet de fermer la page en détruisant les widgets
+    fenetre.destroy()  #Fonction qui permet de fermer la page en détruisant les widgets
 
 
-boutQuitter = Button(fenetre,
-                     bg='red',
-                     fg='white',
-                     text="QUITTER",
-                     relief=FLAT,
-                     command=BoutQuit)  # création du bouton quitter
-boutQuitter.pack(side=BOTTOM, padx=10)  #position du bouton
-boutQuitter['font'] = f1  #style du bouton
+boutQuitter = Button(fenetre, bg = 'red', fg = 'white', text = "QUITTER", relief = FLAT, command = BoutQuit, font = police)  #Création du bouton quitter
+boutQuitter.pack(side=BOTTOM, padx=10)  #Position du bouton
 
-#-------------------------------------------------------------------------------------------------------------------------------------
-#Affiche le titre de la page
+#-------------------------------------LOGO--------------------------------------
 logo = PhotoImage(file = "Affichage/logoPage.png")
 
 canvasLogo = Canvas(fenetre, width = 500, height = 100, borderwidth = 0, highlightthickness = 0, bg = "white")
@@ -257,23 +248,7 @@ canvasLogo.create_image(250, 50, image = logo)
 canvasLogo.pack()
 
 
-"""
-Titre = Label(fenetre,
-              text="ARGONIMAUX",
-              justify=CENTER,
-              padx=100,
-              pady=10,
-              bg='LawnGreen',
-              fg='Black',
-              relief=SUNKEN)
-Titre.pack()
-Titre['font'] = f2
-"""
-
-#Variable permettant de stocker l'animal sélection ; une valeur est déjà sélectionné par defaut
-AnimalSelect = ""
-
-
+#-------------------------------------COMBOBOX----------------------------------
 #Variable permettant de stocker l'animal sélection ; une valeur est déjà sélectionné par defaut
 AnimalSelect = ""
 
@@ -289,8 +264,8 @@ selectionFrame.pack()
 
 
 
-Texte1 = Label(selectionFrame, text = "Cliquer sur une zone et choisir un élément à localiser", font = police)
-Texte1.pack(pady = 10)
+Texte1 = Label(selectionFrame, text = "Cliquer sur une zone et choisir un élément à localiser", font = police, bg = "white")
+Texte1.pack()
 
 AnimauxCombo = ["Aucune case sélectionnée"]  # Choix de l'animal
 
@@ -328,10 +303,10 @@ btn1 = Button(fenetre,
               fg='white',
               text="Afficher le chemin",
               relief=FLAT,
-              command=AfficherCarte)
+              command=AfficherCarte,
+              font = police)
 
-btn1.pack(side=BOTTOM, padx=10, pady=10)
-btn1['font'] = f1
+btn1.pack(side = BOTTOM, padx = 10, pady = 10)
 
 #-----------------------------------Légende----------------------------------------------------------------------------------------
 #Affichage de la légende qui permet de comprendre la signification des surbrillances présentes sur la carte
@@ -339,43 +314,37 @@ btn1['font'] = f1
 Legende = Label(
     fenetre,
     text=
-    "La couleur varie du vert au rouge selon le nombre d'éléments présents dans la zone :"
-)
+    "La couleur varie du vert au rouge selon le nombre d'éléments présents dans la zone :", font = police)
 Legende.pack()
-Legende['font'] = f1
 
-Legende2 = Label(fenetre, text="- Vert = 1 élément présent dans la zone")
+
+Legende2 = Label(fenetre, text="- Vert = 1 élément présent dans la zone", font = police)
 Legende2.pack()
-Legende2['font'] = f1
 
 Legende3 = Label(fenetre,
                  text="- Orange = entre 2 et 4 éléments présents dans la zone")
 Legende3.pack()
-Legende3['font'] = f1
+Legende3['font'] = police
 
-Legende4 = Label(fenetre,
-                 text="- Rouge = entre 5 et 10 éléments présents dans la zone")
+Legende4 = Label(fenetre, text = "- Rouge = entre 5 et 10 éléments présents dans la zone")
 Legende4.pack()
-Legende4['font'] = f1
+Legende4['font'] = police
 
-Legende5 = Label(
-    fenetre, text="- Rouge Foncé = plus de 10 éléments présents dans la zone")
+Legende5 = Label(fenetre, text = "- Rouge Foncé = plus de 10 éléments présents dans la zone")
 Legende5.pack()
-Legende5['font'] = f1
+Legende5['font'] = police
 
 #-----------------------------------------------------LISTBOX-----------------------------------------------------------------------------
 #Création des listes permettant de visualiser tout les éléments géolocalisable
 #Listbox Tortues
 
-Texte2 = Label(fenetre,
-               text='Ensemble des éléments géolocalisables :',
-               underline=1)
-Texte2.pack(pady=10)
-Texte2['font'] = f1
+Texte2 = Label(fenetre, text = 'Ensemble des éléments géolocalisables :', underline = 1)
+Texte2.pack(pady = 10)
+Texte2['font'] = police
 
 Texte3 = Label(fenetre, text='Tortues :')
 Texte3.pack()
-Texte3['font'] = f1
+Texte3['font'] = police
 
 listboxT = Listbox(fenetre)#Création le la listbox
 
@@ -388,7 +357,7 @@ listboxT.configure(state = DISABLED)
 #Listbox Balises
 Texte5 = Label(fenetre, text='Balises :')
 Texte5.pack()
-Texte5['font'] = f1
+Texte5['font'] = police
 
 listboxT = Listbox(fenetre)  # création le la listbox
 
@@ -401,7 +370,7 @@ listboxT.configure(state = DISABLED)
 #Listbox Requins
 Texte4 = Label(fenetre, text='Requins :')
 Texte4.pack()
-Texte4['font'] = f1
+Texte4['font'] = police
 
 listboxT = Listbox(fenetre)  #Création le la listbox
 for i in range(len(animaux['requin'])):
