@@ -172,28 +172,28 @@ for i in range(len(points_x) - 1):
                              points_x[i + 1],
                              points_y[j + 1],
                              fill=codes_couleur[3],
-                             alpha=.2)
+                             alpha=.3)
         elif nombre_animaux_zone < 10 and nombre_animaux_zone > 5:  #si le nombre de tortues présentes est supérieur à 5 et inférieur à 10
             create_rectangle(points_x[i],
                              points_y[j],
                              points_x[i + 1],
                              points_y[j + 1],
                              fill=codes_couleur[2],
-                             alpha=.2)
+                             alpha=.3)
         elif nombre_animaux_zone < 5 and nombre_animaux_zone > 1:  #si le nombre de tortues présentes est supérieur à 1 et inférieur à 5
             create_rectangle(points_x[i],
                              points_y[j],
                              points_x[i + 1],
                              points_y[j + 1],
                              fill=codes_couleur[1],
-                             alpha=.2)
+                             alpha=.3)
         elif nombre_animaux_zone == 1:  #si le nombre de tortues présentes est égal à 1
             create_rectangle(points_x[i],
                              points_y[j],
                              points_x[i + 1],
                              points_y[j + 1],
                              fill=codes_couleur[0],
-                             alpha=.2)
+                             alpha=.3)
         else:  #si le nombre de tortues est égal à 0
             create_rectangle(points_x[i],
                              points_y[j],
