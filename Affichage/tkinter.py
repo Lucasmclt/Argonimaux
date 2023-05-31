@@ -238,16 +238,18 @@ def BoutQuit():
 
 
 boutQuitter = Button(fenetre, bg = 'red', fg = 'white', text = "QUITTER", relief = FLAT, command = BoutQuit, font = police)  #Création du bouton quitter
-boutQuitter.pack(side=BOTTOM, padx=10)  #Position du bouton
+boutQuitter.pack(side = BOTTOM, padx=10)  #Position du bouton
 
 #-------------------------------------LOGO--------------------------------------
+"""
 logo = PhotoImage(file = "Affichage/logoPage.png")
+#logo = logo.zoom(1, 1)
+logo = logo.resize((650, 650), Image.ANTIALIAS)
 
-canvasLogo = Canvas(fenetre, width = 500, height = 100, borderwidth = 0, highlightthickness = 0, bg = "white")
+canvasLogo = Canvas(fenetre, width = 800, height = 200, borderwidth = 0, highlightthickness = 0, bg = "white")
 canvasLogo.create_image(250, 50, image = logo)
 canvasLogo.pack()
-
-
+"""
 #-------------------------------------COMBOBOX----------------------------------
 #Variable permettant de stocker l'animal sélection ; une valeur est déjà sélectionné par defaut
 AnimalSelect = ""
@@ -259,7 +261,7 @@ def Selection(event):
     AnimalSelect = str(listeCombo.get())
 
 
-selectionFrame = Frame(fenetre, width = 700, height = 200, bg = "white", padx = 10, pady = 10)
+selectionFrame = Frame(fenetre, width = 700, height = 200, bg = "white", padx = 20, pady = 20)
 selectionFrame.pack()
 
 
@@ -311,8 +313,8 @@ def AfficherCarte():
 
         folium.Marker(table[i], x, icon=folium.Icon(color='darkblue')).add_to(fmap)
     # Ajout d'un marqueur
-    
-    
+
+
 #Création bouton 1
 btn1 = Button(fenetre,
               bg='green',
@@ -324,45 +326,50 @@ btn1 = Button(fenetre,
 
 btn1.pack(side = BOTTOM, padx = 10, pady = 10)
 
-#-----------------------------------Légende----------------------------------------------------------------------------------------
+#-----------------------------------Légende-------------------------------------
 #Affichage de la légende qui permet de comprendre la signification des surbrillances présentes sur la carte
 
-Legende = Label(
-    fenetre,
-    text=
-    "La couleur varie du vert au rouge selon le nombre d'éléments présents dans la zone :", font = police)
+legendeFrame = Frame(fenetre, width = 700, height = 300, bg = "white", padx = 25, pady = 25)
+legendeFrame.pack()
+
+Legende = Label(legendeFrame, text = "La couleur varie du vert au rouge selon le nombre d'éléments présents dans la zone :", font = police, bg = "white")
 Legende.pack()
 
-
-Legende2 = Label(fenetre, text="- Vert = 1 élément présent dans la zone", font = police)
+Legende2 = Label(legendeFrame, text="- Vert = 1 élément présent dans la zone", font = police, bg = "white")
 Legende2.pack()
 
-Legende3 = Label(fenetre,
-                 text="- Orange = entre 2 et 4 éléments présents dans la zone")
+Legende3 = Label(legendeFrame, text = "- Orange = entre 2 et 4 éléments présents dans la zone", bg = "white")
 Legende3.pack()
 Legende3['font'] = police
 
-Legende4 = Label(fenetre, text = "- Rouge = entre 5 et 10 éléments présents dans la zone")
+Legende4 = Label(legendeFrame, text = "- Rouge = entre 5 et 10 éléments présents dans la zone", bg = "white")
 Legende4.pack()
 Legende4['font'] = police
 
-Legende5 = Label(fenetre, text = "- Rouge Foncé = plus de 10 éléments présents dans la zone")
+Legende5 = Label(legendeFrame, text = "- Rouge Foncé = plus de 10 éléments présents dans la zone", bg = "white")
 Legende5.pack()
 Legende5['font'] = police
 
 #-----------------------------------------------------LISTBOX-----------------------------------------------------------------------------
 #Création des listes permettant de visualiser tout les éléments géolocalisable
-#Listbox Tortues
 
-Texte2 = Label(fenetre, text = 'Ensemble des éléments géolocalisables :', underline = 1)
+listFrame = Frame(fenetre, width = 800, height = 300, bg = "white", padx = 25, pady = 25)
+listFrame.pack_propagate(False)
+listFrame.pack()
+
+Texte2 = Label(listFrame, text = 'Ensemble des éléments géolocalisables', bg = "white", font = (police, 16))
 Texte2.pack(pady = 10)
-Texte2['font'] = police
 
-Texte3 = Label(fenetre, text='Tortues :')
+#Listbox Tortues
+tFrame = Frame(listFrame, width = 100, height = 150, bg = "white")
+tFrame.pack()
+tFrame.place(x = 50, y = 40)
+
+Texte3 = Label(tFrame, text = 'Tortues', bg = "white")
 Texte3.pack()
 Texte3['font'] = police
 
-listboxT = Listbox(fenetre)#Création le la listbox
+listboxT = Listbox(tFrame, font = police)#Création le la listbox
 
 for i in range(len(animaux['tortue'])):
     listboxT.insert(i, animaux['tortue'][i])
@@ -371,11 +378,15 @@ listboxT.configure(state = DISABLED)
 
 
 #Listbox Balises
-Texte5 = Label(fenetre, text='Balises :')
+bFrame = Frame(listFrame, width = 100, height = 150, bg = "white")
+bFrame.pack()
+bFrame.place(x = 325, y = 40)
+
+Texte5 = Label(bFrame, text='Balises', bg = "white")
 Texte5.pack()
 Texte5['font'] = police
 
-listboxT = Listbox(fenetre)  # création le la listbox
+listboxT = Listbox(bFrame, font = police)  # création le la listbox
 
 for i in range(len(animaux['bouée'])):
     listboxT.insert(i, animaux['bouée'][i])
@@ -384,11 +395,15 @@ listboxT.configure(state = DISABLED)
 
 
 #Listbox Requins
-Texte4 = Label(fenetre, text='Requins :')
+rFrame = Frame(listFrame, width = 100, height = 150, bg = "white")
+rFrame.pack()
+rFrame.place(x = 600, y = 40)
+
+Texte4 = Label(rFrame, text='Requins', bg = "white")
 Texte4.pack()
 Texte4['font'] = police
 
-listboxT = Listbox(fenetre)  #Création le la listbox
+listboxT = Listbox(rFrame, font = police)  #Création le la listbox
 for i in range(len(animaux['requin'])):
     listboxT.insert(i, animaux['requin'][i])
 listboxT.pack()
