@@ -241,15 +241,12 @@ boutQuitter = Button(fenetre, bg = 'red', fg = 'white', text = "QUITTER", relief
 boutQuitter.pack(side = BOTTOM, padx=10)  #Position du bouton
 
 #-------------------------------------LOGO--------------------------------------
-"""
 logo = PhotoImage(file = "Affichage/logoPage.png")
-#logo = logo.zoom(1, 1)
-logo = logo.resize((650, 650), Image.ANTIALIAS)
 
 canvasLogo = Canvas(fenetre, width = 800, height = 200, borderwidth = 0, highlightthickness = 0, bg = "white")
 canvasLogo.create_image(250, 50, image = logo)
 canvasLogo.pack()
-"""
+
 #-------------------------------------COMBOBOX----------------------------------
 #Variable permettant de stocker l'animal sélection ; une valeur est déjà sélectionné par defaut
 AnimalSelect = ""
