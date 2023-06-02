@@ -127,35 +127,6 @@ canvas.pack()
 #Définition de la police
 police = tkfont.Font(family="Onest-Regular.ttf", size = 10,  weight = "bold")
 
-#-------------------------------------------------------------------------------
-#Fonction servant à réaliser des rectangles avec des coins arrondis
-def round_rectangle(x1, y1, x2, y2, radius=25, **kwargs):
-
-    points = [x1+radius, y1,
-              x1+radius, y1,
-              x2-radius, y1,
-              x2-radius, y1,
-              x2, y1,
-              x2, y1+radius,
-              x2, y1+radius,
-              x2, y2-radius,
-              x2, y2-radius,
-              x2, y2,
-              x2-radius, y2,
-              x2-radius, y2,
-              x1+radius, y2,
-              x1+radius, y2,
-              x1, y2,
-              x1, y2-radius,
-              x1, y2-radius,
-              x1, y1+radius,
-              x1, y1+radius,
-              x1, y1]
-
-    return canvas.create_polygon(points, **kwargs, smooth=True)
-
-#my_rectangle = round_rectangle(50, 50, 150, 100, radius=20, fill="blue")
-
 #--------------------------Mise en place d'un quadrillage-------------------------------
 #Définition du nombre de case sur les abscisses (longitude)
 points_x = [i for i in range(0, 680, 23)]
@@ -404,7 +375,7 @@ boutQuitter.pack(padx=10, pady = 10)  #Position du bouton
 
 
 #----------------------------------CREDITS--------------------------------------
-creditFrame = Frame(fenetre, width = 1200, height = 20, bg = "white", pady = 10)
+creditFrame = Frame(fenetre, width = 1200, height = 20, bg = "blue", pady = 10)
 creditFrame.pack(side = BOTTOM)
 
 openStreet = Label(creditFrame, text = "© OpenStreetMap     Développé par Yann FERNANDEZ PUIG, Lucas MICHALET, Jules TURCHI", padx= 10, font = police)
