@@ -202,24 +202,16 @@ def coord_clic(evt):
     return zone_select
 
 #-------------------------------------LOGO--------------------------------------
-logo = PhotoImage(file = "Affichage/logoPage.png")
-
-canvasLogo = Canvas(fenetre, width = 500, height = 100, borderwidth = 0, highlightthickness = 0, bg = "white")
-canvasLogo.create_image(250, 50, image = logo)
-#canvasLogo.pack()
-
-image = Image.open("Affichage/logoPage.png")
-image_tk = ImageTk.PhotoImage(image)
+logo = Image.open("Affichage/logoPage.png")
+logo_tk = ImageTk.PhotoImage(logo)
 
 
 def Insta():
     # Fonction pour ouvrir le lien
     webbrowser.open("https://www.instagram.com/argonimaux/")
-#logo.bind("<Button-1>", lambda e: Insta())
 
-
-bouton = Button(fenetre, image = image_tk, command = Insta, borderwidth = 0, highlightthickness = 0, cursor = "hand2")
-bouton.pack()
+boutonLogo = Button(fenetre, image = logo_tk, command = Insta, borderwidth = 0, highlightthickness = 0, cursor = "hand2")
+boutonLogo.pack()
 
 #-------------------------------------COMBOBOX----------------------------------
 #Variable permettant de stocker l'animal sélection ; une valeur est déjà sélectionné par defaut
@@ -402,6 +394,22 @@ lienCNES.bind("<Button-1>", lambda e: CNES())
 
 openStreet.pack(side = LEFT)
 lienCNES.pack(side = RIGHT)
+
+
+
+instaLogo = Image.open("Affichage/logo_instagram.jpg")
+instaLogo = instaLogo.resize((25, 25))
+instaLogo_tk = ImageTk.PhotoImage(instaLogo)
+
+
+
+def Insta():
+    # Fonction pour ouvrir le lien
+    webbrowser.open("https://www.instagram.com/argonimaux/")
+
+boutonInsta = Button(creditFrame, image = instaLogo_tk, command = Insta, borderwidth = 0, highlightthickness = 0, cursor = "hand2")
+boutonInsta.pack()
+
 
 
 #-------------------------------------------------------------------------------
