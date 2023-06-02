@@ -404,7 +404,7 @@ boutQuitter.pack(padx=10, pady = 10)  #Position du bouton
 
 
 #----------------------------------CREDITS--------------------------------------
-creditFrame = Frame(fenetre, width = 1200, height = 20, bg = "blue", pady = 10)
+creditFrame = Frame(fenetre, width = 1200, height = 20, bg = "white", pady = 10)
 creditFrame.pack(side = BOTTOM)
 
 openStreet = Label(creditFrame, text = "© OpenStreetMap     Développé par Yann FERNANDEZ PUIG, Lucas MICHALET, Jules TURCHI", padx= 10, font = police)
