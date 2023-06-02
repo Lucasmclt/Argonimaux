@@ -127,6 +127,7 @@ canvas.pack()
 #Définition de la police
 police = tkfont.Font(family="Onest-Regular.ttf", size = 10,  weight = "bold")
 
+
 #--------------------------Mise en place d'un quadrillage-------------------------------
 #Définition du nombre de case sur les abscisses (longitude)
 points_x = [i for i in range(0, 680, 23)]
@@ -205,7 +206,20 @@ logo = PhotoImage(file = "Affichage/logoPage.png")
 
 canvasLogo = Canvas(fenetre, width = 500, height = 100, borderwidth = 0, highlightthickness = 0, bg = "white")
 canvasLogo.create_image(250, 50, image = logo)
-canvasLogo.pack()
+#canvasLogo.pack()
+
+image = Image.open("Affichage/logoPage.png")
+image_tk = ImageTk.PhotoImage(image)
+
+
+def Insta():
+    # Fonction pour ouvrir le lien
+    webbrowser.open("https://www.instagram.com/argonimaux/")
+#logo.bind("<Button-1>", lambda e: Insta())
+
+
+bouton = Button(fenetre, image = image_tk, command = Insta, borderwidth = 0, highlightthickness = 0, cursor = "hand2")
+bouton.pack()
 
 #-------------------------------------COMBOBOX----------------------------------
 #Variable permettant de stocker l'animal sélection ; une valeur est déjà sélectionné par defaut
@@ -375,18 +389,16 @@ boutQuitter.pack(padx=10, pady = 10)  #Position du bouton
 
 
 #----------------------------------CREDITS--------------------------------------
-creditFrame = Frame(fenetre, width = 1200, height = 20, bg = "blue", pady = 10)
+creditFrame = Frame(fenetre, width = 1200, height = 20, bg = "white", pady = 10)
 creditFrame.pack(side = BOTTOM)
 
-openStreet = Label(creditFrame, text = "© OpenStreetMap     Développé par Yann FERNANDEZ PUIG, Lucas MICHALET, Jules TURCHI", padx= 10, font = police)
+openStreet = Label(creditFrame, text = "© OpenStreetMap     Développé par Yann FERNANDEZ PUIG, Lucas MICHALET, Jules TURCHI", padx= 10, font = police, bg = "white")
 
 def CNES():
     # Fonction pour ouvrir le lien
     webbrowser.open("http://argonautica.jason.oceanobs.com/html/argonautica/affiche_donnees_fr.html")
-lienCNES = Label(creditFrame, text = "© CNES", padx = 10, font = police, cursor = "hand2")
+lienCNES = Label(creditFrame, text = "© CNES", padx = 10, font = police, cursor = "hand2", bg = "white")
 lienCNES.bind("<Button-1>", lambda e: CNES())
-
-#https://instagram.com/argonimaux?igshid=OGQ5ZDc2ODk2ZA==
 
 openStreet.pack(side = LEFT)
 lienCNES.pack(side = RIGHT)
