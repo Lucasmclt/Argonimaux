@@ -282,6 +282,9 @@ def AfficherCarte():
 
     #Liste contenant les coordonnées de l'élèment sélectionné
     table = gestion.coordonnesAnimal(connection, AnimalSelect)
+    date = gestion.datesAnimal(connection, AnimalSelect)
+
+    print(date)
 
     #Création d'une carte
     fmap = folium.Map(location = [43.604598, 1.445456], tiles="OpenStreetMap", zoom_start = 4.5)
@@ -292,16 +295,17 @@ def AfficherCarte():
     #Ajout d'une ligne brisée définie à partir de 5 points
     folium.PolyLine(table, color="blue", weight=2.5, opacity=0.8).add_to(fmap)
 
-    fmap.save("carte.html")  #Génération du fichier HTML contenant la carte
-    webbrowser.open("carte.html")  #Ouverture d'une nouvelle page avec la carte
-
-    # placement des marqueurs
-    for i in range(0,len(date),50):
+    #Placement des marqueurs
+    for i in range(0, len(date), 75):
         j = date[i][0][-2:]
         m = date[i][0][5:7]
         a = date[i][0][0:4]
+
         aff_date = j +"/"+ m +"/"+ a
         folium.Marker(table[i], aff_date, icon=folium.Icon(color='darkblue')).add_to(fmap)
+
+    fmap.save("carte.html")  #Génération du fichier HTML contenant la carte
+    webbrowser.open("carte.html")  #Ouverture d'une nouvelle page avec la carte
  
 
 
