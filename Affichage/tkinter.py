@@ -404,17 +404,22 @@ boutQuitter.pack(padx=10, pady = 10)  #Position du bouton
 
 
 #----------------------------------CREDITS--------------------------------------
-creditFrame = Frame(fenetre, width = 1200, height = 100, bg = "white", pady = 100)
+creditFrame = Frame(fenetre, width = 1200, height = 20, bg = "blue", pady = 10)
 creditFrame.pack(side = BOTTOM)
 
-openStreet = Label(creditFrame, text = "© OpenStreetMap", font = police)
-nom = Label(creditFrame, text = "Développé par Yann FERNANDEZ PUIG, Lucas MICHALET, Jules TURCHI", padx = 10, pady = 10, font = police)
+openStreet = Label(creditFrame, text = "© OpenStreetMap     Développé par Yann FERNANDEZ PUIG, Lucas MICHALET, Jules TURCHI", padx= 10, font = police)
+
+def CNES():
+    # Fonction pour ouvrir le lien
+    webbrowser.open("http://argonautica.jason.oceanobs.com/html/argonautica/affiche_donnees_fr.html")
+lienCNES = Label(creditFrame, text = "© CNES", padx = 10, font = police, cursor = "hand2")
+lienCNES.bind("<Button-1>", lambda e: CNES())
+
+#https://instagram.com/argonimaux?igshid=OGQ5ZDc2ODk2ZA==
 
 openStreet.pack(side = LEFT)
-nom.pack()
+lienCNES.pack(side = RIGHT)
 
-
-nom.place(x = 300, y = 10)
 
 #-------------------------------------------------------------------------------
 #Détection des clics de la souris sur la carte
