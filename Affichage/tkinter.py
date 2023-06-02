@@ -229,21 +229,10 @@ def coord_clic(evt):
                             zone_select[1][0], zone_select[1][1])
     return zone_select
 
-
-#------------------------------------BOUTONS------------------------------------
-#------------------------------------BOUTON 2-----------------------------------
-#Le bouton 2 permet de fermer la page
-def BoutQuit():
-    fenetre.destroy()  #Fonction qui permet de fermer la page en détruisant les widgets
-
-
-boutQuitter = Button(fenetre, bg = 'red', fg = 'white', text = "QUITTER", relief = FLAT, command = BoutQuit, font = police)  #Création du bouton quitter
-boutQuitter.pack(side = BOTTOM, padx=10)  #Position du bouton
-
 #-------------------------------------LOGO--------------------------------------
 logo = PhotoImage(file = "Affichage/logoPage.png")
 
-canvasLogo = Canvas(fenetre, width = 800, height = 200, borderwidth = 0, highlightthickness = 0, bg = "white")
+canvasLogo = Canvas(fenetre, width = 500, height = 100, borderwidth = 0, highlightthickness = 0, bg = "white")
 canvasLogo.create_image(250, 50, image = logo)
 canvasLogo.pack()
 
@@ -274,51 +263,6 @@ listeCombo.current(0)  #Choix de l'élément qui s'affiche par défaut
 listeCombo.pack(pady = 10)
 listeCombo.bind("<<ComboboxSelected>>", Selection)  # Application de la fonction selection à l'élément
 
-
-
-#------------------------------------BOUTON 1----------------------------------------------------------
-#Le bouton 1 permet afficher la carte avec le trajet complet d'un élément
-def AfficherCarte():
-
-    #Liste contenant les coordonnées de l'élèment sélectionné
-    table = gestion.coordonnesAnimal(connection, AnimalSelect)
-    date = gestion.datesAnimal(connection, AnimalSelect)
-
-    print(date)
-
-    #Création d'une carte
-    fmap = folium.Map(location = [43.604598, 1.445456], tiles="OpenStreetMap", zoom_start = 4.5)
-
-    #Ajout d'un marqueur
-    folium.Marker([43.604598, 1.445456])
-
-    #Ajout d'une ligne brisée définie à partir de 5 points
-    folium.PolyLine(table, color="blue", weight=2.5, opacity=0.8).add_to(fmap)
-
-    #Placement des marqueurs
-    for i in range(0, len(date), 75):
-        j = date[i][0][-2:]
-        m = date[i][0][5:7]
-        a = date[i][0][0:4]
-
-        aff_date = j +"/"+ m +"/"+ a
-        folium.Marker(table[i], aff_date, icon=folium.Icon(color='darkblue')).add_to(fmap)
-
-    fmap.save("carte.html")  #Génération du fichier HTML contenant la carte
-    webbrowser.open("carte.html")  #Ouverture d'une nouvelle page avec la carte
- 
-
-
-#Création bouton 1
-btn1 = Button(fenetre,
-              bg='green',
-              fg='white',
-              text="Afficher le chemin",
-              relief=FLAT,
-              command=AfficherCarte,
-              font = police)
-
-btn1.pack(side = BOTTOM, padx = 10, pady = 10)
 
 #-----------------------------------Légende-------------------------------------
 #Affichage de la légende qui permet de comprendre la signification des surbrillances présentes sur la carte
@@ -351,7 +295,7 @@ listFrame = Frame(fenetre, width = 800, height = 300, bg = "white", padx = 25, p
 listFrame.pack_propagate(False)
 listFrame.pack()
 
-Texte2 = Label(listFrame, text = 'Ensemble des éléments géolocalisables', bg = "white", font = (police, 16))
+Texte2 = Label(listFrame, text = 'Ensemble des éléments géolocalisables', bg = "white", font = (police, 14))
 Texte2.pack(pady = 10)
 
 #Listbox Tortues
@@ -403,7 +347,76 @@ for i in range(len(animaux['requin'])):
 listboxT.pack()
 listboxT.configure(state = DISABLED)
 
-#-----------------------------------------------------------------------------------------------------------------------------------------
+
+#------------------------------------BOUTONS------------------------------------
+#------------------------------------BOUTON 1-----------------------------------
+#Le bouton 1 permet afficher la carte avec le trajet complet d'un élément
+def AfficherCarte():
+
+    #Liste contenant les coordonnées de l'élèment sélectionné
+    table = gestion.coordonnesAnimal(connection, AnimalSelect)
+    date = gestion.datesAnimal(connection, AnimalSelect)
+
+    print(date)
+
+    #Création d'une carte
+    fmap = folium.Map(location = [43.604598, 1.445456], tiles="OpenStreetMap", zoom_start = 4.5)
+
+    #Ajout d'un marqueur
+    folium.Marker([43.604598, 1.445456])
+
+    #Ajout d'une ligne brisée définie à partir de 5 points
+    folium.PolyLine(table, color="blue", weight=2.5, opacity=0.8).add_to(fmap)
+
+
+    #Placement des marqueurs
+    for i in range(0, len(date), 75):
+        j = date[i][0][-2:]
+        m = date[i][0][5:7]
+        a = date[i][0][0:4]
+
+        aff_date = j +"/"+ m +"/"+ a
+        folium.Marker(table[i], aff_date, icon=folium.Icon(color='darkblue')).add_to(fmap)
+
+    fmap.save("carte.html")  #Génération du fichier HTML contenant la carte
+    webbrowser.open("carte.html")  #Ouverture d'une nouvelle page avec la carte
+
+
+#Création bouton 1
+btn1 = Button(fenetre,
+              bg='green',
+              fg='white',
+              text="Afficher le chemin",
+              relief=FLAT,
+              command=AfficherCarte,
+              font = police)
+
+btn1.pack(padx = 10, pady = 10)
+
+#------------------------------------BOUTON 2-----------------------------------
+#Le bouton 2 permet de fermer la page
+def BoutQuit():
+    fenetre.destroy()  #Fonction qui permet de fermer la page en détruisant les widgets
+
+
+boutQuitter = Button(fenetre, bg = 'red', fg = 'white', text = "QUITTER", relief = FLAT, command = BoutQuit, font = police)  #Création du bouton quitter
+boutQuitter.pack(padx=10, pady = 10)  #Position du bouton
+
+
+#----------------------------------CREDITS--------------------------------------
+creditFrame = Frame(fenetre, width = 1200, height = 100, bg = "white", pady = 100)
+creditFrame.pack(side = BOTTOM)
+
+openStreet = Label(creditFrame, text = "© OpenStreetMap", font = police)
+nom = Label(creditFrame, text = "Développé par Yann FERNANDEZ PUIG, Lucas MICHALET, Jules TURCHI", padx = 10, pady = 10, font = police)
+
+openStreet.pack(side = LEFT)
+nom.pack()
+
+
+nom.place(x = 300, y = 10)
+
+#-------------------------------------------------------------------------------
 #Détection des clics de la souris sur la carte
 canvas.bind("<Button-1>", coord_clic)
 
