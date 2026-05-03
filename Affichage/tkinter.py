@@ -229,7 +229,7 @@ selectionFrame.pack()
 
 
 
-Texte1 = Label(selectionFrame, text = "Cliquer sur une zone et choisir un élément à localiser", font = police, bg = "white")
+Texte1 = Label(selectionFrame, text = "Commencer le test rapide\nDiagnostic avancé sur compte pro", font = police, bg = "white")
 Texte1.pack()
 
 AnimauxCombo = ["Aucune case sélectionnée"]  # Choix de l'animal
